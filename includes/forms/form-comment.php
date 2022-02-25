@@ -133,6 +133,7 @@ if ( ! class_exists( 'acf_form_comment' ) ) :
 					'comment' => get_post_type( $comment->comment_post_ID ),
 				)
 			);
+			$field_groups = apply_filters("acf/comment_group_filter", $field_groups);
 
 			// render
 			if ( ! empty( $field_groups ) ) {
@@ -148,7 +149,7 @@ if ( ! class_exists( 'acf_form_comment' ) ) :
 				foreach ( $field_groups as $field_group ) {
 
 						// load fields
-						$fields = acf_get_fields( $field_group );
+						$fields = apply_filters("acf/comment_field_filter", acf_get_fields( $field_group ));
 
 						// vars
 						$o = array(
